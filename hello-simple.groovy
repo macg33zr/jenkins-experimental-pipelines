@@ -7,7 +7,7 @@ pipeline {
         stage('Hello') {
             steps {             
               echo "Hello"
-              sh 'set
+              sh 'set'
             }
         }
         stage('World') {

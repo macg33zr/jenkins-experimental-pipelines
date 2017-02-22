@@ -5,8 +5,9 @@ pipeline {
 
     stages {
         stage('Hello') {
-            steps {
+            steps {             
               echo "Hello"
+                echo "env.GIT_URL = '${env.GIT_URL}'"
             }
         }
         stage('World') {

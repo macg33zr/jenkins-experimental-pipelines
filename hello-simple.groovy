@@ -7,7 +7,7 @@ pipeline {
         stage('Hello') {
             steps {             
               echo "Hello"
-                echo "env.GIT_URL = '${env.GIT_URL}'"
+              sh 'set
             }
         }
         stage('World') {

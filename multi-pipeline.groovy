@@ -3,6 +3,9 @@
  *
  * Why? You might want an approval section that does not tie up a node or some script that runs outside any
  * pipeline declaration without using an executor.
+ *
+ * It does seem to be a loophole to allow multiple pipelines in a single job
+ *
  */
 
 
@@ -10,7 +13,7 @@
 pipeline {
 
     // Run on any node
-    agent label: ""
+    agent any
 
     stages {
         stage('Section 1') {
@@ -35,7 +38,7 @@ stage('Approval') {
 pipeline {
 
     // Run on any node
-    agent label: ""
+    agent any
 
     stages {
         stage('Section 2') {

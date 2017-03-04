@@ -1,5 +1,3 @@
-import com.sun.tools.internal.ws.wscompile.AbortException
-
 /**
  * Tracking if the build was aborted
  */

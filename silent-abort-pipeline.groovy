@@ -12,9 +12,11 @@ def abortBuild = { String abortMessage ->
 }
 
 /**
- * A pipeline that can abort without failing. Try-catch makes it a bit messy. An native abort() step
+ * A pipeline that can abort without failing. Try-catch makes it a bit messy. A native abort() step
  * similar to error() that does not fail the build would make it easier, but does not fit the Jenkins model
- * I think.
+ * I think. The error status cannot be cleared without a try-catch wrapper around the code becuase the 
+ * Jenkins Run model does not support downgrading the currentBuild.result from FAILURE to SUCCESS, a fail
+ * will always stick.
  */
 pipeline {
 

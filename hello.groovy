@@ -14,7 +14,7 @@
 pipeline {
 
     // All stages will run on any node
-    agent label: ""
+    agent any
 
     stages {
         stage('Hello') {

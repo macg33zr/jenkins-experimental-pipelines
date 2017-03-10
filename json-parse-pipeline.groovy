@@ -9,6 +9,9 @@ import groovy.json.JsonSlurperClassic
  *  'new groovy.json.JsonSlurperClassic'
  *  'new java.util.HashMap java.util.Map'
  *
+ * Also see:
+ * http://stackoverflow.com/questions/37864542/jenkins-pipeline-notserializableexception-groovy-json-internal-lazymap
+ *
  * @param json Json string to parse with name / value properties
  * @return A map of properties
  */

@@ -4,7 +4,7 @@
 // ** Trying to notify changed only for success from fail, not report twice when changed to fail **
 //
 
-// Used to track failure any stages using a stage level post section
+// Used to track failure on any stages using a stage level post section
 Boolean buildFailed = false
 
 pipeline {

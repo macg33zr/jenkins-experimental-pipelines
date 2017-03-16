@@ -1,6 +1,8 @@
 //
 // Pipeline to handle build result changing from failure to success. For example, if it needs to send an email when it recovers.
 //
+// ** Trying to notify changed only for success from fail, not report twice when changed to fail **
+//
 
 // Track fail and changed in first pipeline
 Boolean buildFailed = false

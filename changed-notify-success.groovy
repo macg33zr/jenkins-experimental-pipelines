@@ -4,11 +4,9 @@
 // ** Trying to notify changed only for success from fail, not report twice when changed to fail **
 //
 
-// Track fail and changed in first pipeline
+// Used to track failure any stages using a stage level post section
 Boolean buildFailed = false
-Boolean buildChanged = false
 
-// Main pipeline that does the processing
 pipeline {
     
     agent any
@@ -31,21 +29,33 @@ pipeline {
                     }
                 }
             }
+            
+            // Do this on every stage to detect failures
+            post { failure { script { buildFailed = true } } }
+        }
+        
+        stage('Another') {
+          steps { echo 'another stage..' }
+          post { failure { script { buildFailed = true } } }
         }
     }
 
     post {
         always  {
-            echo "Build completed. currentBuild.result = ${currentBuild.result}"
+            echo "Build completed"
         }
         changed {
             echo 'Build result changed'
-            script { buildChanged = true }
+            
+            // Notify only on change to success
+            script { 
+              if(!buildFailed) {
+                echo 'NOTIFY: Build changed to SUCCESS'
+              }
+            }
         }
         failure {
-            echo 'Build failed'
             echo 'NOTIFY: Build failed'
-            script { buildFailed = true }
         }
         success {
             echo 'Build was a success'
@@ -53,12 +63,5 @@ pipeline {
         unstable {
             echo 'Build has gone unstable'
         }
-    }
-}
-
-// 'Floating' scripted stage to notify. Is this legit?
-stage('Notify') {
-    if(!buildFailed && buildChanged) {
-        echo 'NOTIFY: Build changed to SUCCESS'
     }
 }
